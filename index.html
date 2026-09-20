@@ -1,555 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mubeen Ali | DevOps & Cloud Enthusiast</title>
-    <style>
-      :root {
-        --bg: #0d1117;
-        --card-bg: #161b22;
-        --border: #30363d;
-        --text: #c9d1d9;
-        --heading: #f0f6fc;
-        --accent: #58a6ff;
-        --tag-bg: #21262d;
-        --completed: #3fb950;
-        --in-progress: #f2cc60;
-        --upcoming: #a371f7;
-      }
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-          Helvetica, Arial, sans-serif;
-      }
-      body {
-        background-color: var(--bg);
-        color: var(--text);
-        line-height: 1.6;
-        padding: 2.5rem 1rem;
-      }
-      .container {
-        max-width: 900px;
-        margin: 0 auto;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mubeen Ali | DevOps & Cloud Enthusiast</title>
+  <style>
+    :root {
+      --bg: #0d1117;
+      --card-bg: #161b22;
+      --border: #30363d;
+      --text: #c9d1d9;
+      --heading: #f0f6fc;
+      --accent: #58a6ff;
+      --tag-bg: #21262d;
+      --completed: #3fb950;
+      --in-progress: #f2cc60;
+      --upcoming: #a371f7;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.6; padding: 2.5rem 1rem; }
+    .container { max-width: 900px; margin: 0 auto; }
+    
+    /* Header */
+    header { text-align: center; padding-bottom: 2.5rem; border-bottom: 1px solid var(--border); }
+    header h1 { color: var(--heading); font-size: 2.5rem; margin-bottom: 0.3rem; }
+    header .subtitle { font-size: 1.2rem; color: var(--accent); font-weight: 500; margin-bottom: 0.8rem; }
+    header .summary { font-size: 1rem; color: #8b949e; max-width: 680px; margin: 0 auto 1.5rem; }
+    .links a { color: var(--accent); text-decoration: none; margin: 0 10px; font-weight: 500; font-size: 0.95rem; }
+    .links a:hover { text-decoration: underline; }
 
-      /* Header */
-      header {
-        text-align: center;
-        padding-bottom: 2.5rem;
-        border-bottom: 1px solid var(--border);
-      }
-      header h1 {
-        color: var(--heading);
-        font-size: 2.5rem;
-        margin-bottom: 0.3rem;
-      }
-      header .subtitle {
-        font-size: 1.2rem;
-        color: var(--accent);
-        font-weight: 500;
-        margin-bottom: 0.8rem;
-      }
-      header .summary {
-        font-size: 1rem;
-        color: #8b949e;
-        max-width: 680px;
-        margin: 0 auto 1.5rem;
-      }
-      .links a {
-        color: var(--accent);
-        text-decoration: none;
-        margin: 0 10px;
-        font-weight: 500;
-        font-size: 0.95rem;
-      }
-      .links a:hover {
-        text-decoration: underline;
-      }
+    /* Sections */
+    section { margin-top: 3rem; }
+    h2 { color: var(--heading); font-size: 1.5rem; margin-bottom: 1.2rem; border-bottom: 2px solid var(--border); padding-bottom: 0.4rem; }
 
-      /* Sections */
-      section {
-        margin-top: 3rem;
-      }
-      h2 {
-        color: var(--heading);
-        font-size: 1.5rem;
-        margin-bottom: 1.2rem;
-        border-bottom: 2px solid var(--border);
-        padding-bottom: 0.4rem;
-      }
+    /* Grid & Cards */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+    .card { background-color: var(--card-bg); border: 1px solid var(--border); border-radius: 8px; padding: 1.3rem; display: flex; flex-direction: column; justify-content: space-between; }
+    .card h3 { color: var(--heading); font-size: 1.15rem; margin-bottom: 0.5rem; word-break: break-word; }
+    .card p { font-size: 0.92rem; color: #8b949e; margin-bottom: 1rem; flex-grow: 1; }
+    
+    /* Badges & Tags */
+    .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+    .tag { background: var(--tag-bg); color: var(--accent); font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 12px; border: 1px solid var(--border); }
+    .tag.completed { color: var(--completed); border-color: #238636; }
+    .tag.in-progress { color: var(--in-progress); border-color: #bb8009; }
+    .tag.upcoming { color: var(--upcoming); border-color: #8957e5; }
+    
+    /* Action Links */
+    .card a.repo-link { 
+      display: inline-flex; 
+      align-items: center; 
+      color: var(--accent); 
+      text-decoration: none; 
+      font-size: 0.9rem; 
+      font-weight: 600; 
+      width: fit-content;
+      transition: color 0.2s ease;
+    }
+    .card a.repo-link:hover { text-decoration: underline; }
 
-      /* Grid & Cards */
-      .grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.2rem;
-      }
-      .card {
-        background-color: var(--card-bg);
-        border: 1px solid var(--border);
-        border-radius: 8px;
-        padding: 1.3rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-      .card h3 {
-        color: var(--heading);
-        font-size: 1.15rem;
-        margin-bottom: 0.5rem;
-      }
-      .card p {
-        font-size: 0.92rem;
-        color: #8b949e;
-        margin-bottom: 1rem;
-        flex-grow: 1;
-      }
+    /* Skills Box */
+    .skill-category { margin-bottom: 1rem; }
+    .skill-title { font-weight: 600; color: var(--heading); margin-bottom: 0.4rem; font-size: 0.95rem; }
 
-      /* Badges & Tags */
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-        margin-bottom: 1rem;
-      }
-      .tag {
-        background: var(--tag-bg);
-        color: var(--accent);
-        font-size: 0.75rem;
-        padding: 0.2rem 0.6rem;
-        border-radius: 12px;
-        border: 1px solid var(--border);
-      }
-      .tag.completed {
-        color: var(--completed);
-        border-color: #238636;
-      }
-      .tag.in-progress {
-        color: var(--in-progress);
-        border-color: #bb8009;
-      }
-      .tag.upcoming {
-        color: var(--upcoming);
-        border-color: #8957e5;
-      }
+    /* Education */
+    .edu-item { display: flex; justify-content: space-between; margin-bottom: 0.8rem; }
+    .edu-name { color: var(--heading); font-weight: 600; }
+    .edu-date { color: #8b949e; font-size: 0.9rem; }
 
-      /* Action Links */
-      .card a.repo-link {
-        display: inline-flex;
-        align-items: center;
-        color: var(--accent);
-        text-decoration: none;
-        font-size: 0.9rem;
-        font-weight: 600;
-        width: fit-content;
-        transition: color 0.2s ease;
-      }
-      .card a.repo-link:hover {
-        text-decoration: underline;
-      }
+    /* Footer */
+    footer { text-align: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border); color: #8b949e; font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <header>
+      <h1>Mubeen Ali</h1>
+      <div class="subtitle">DevOps, Cloud & Linux Enthusiast</div>
+      <p class="summary">
+        Computer Science student passionate about automation, Linux system administration, and cloud technologies[cite: 4]. Actively building CI/CD pipelines, containerizing services, and scripting reliable environments[cite: 4].
+      </p>
+      <div class="links">
+        <a href="https://github.com/Mubeenali-hub" target="_blank">GitHub</a>
+        <a href="https://linkedin.com/in/mubeen-ali-b202b426b" target="_blank">LinkedIn</a>
+        <a href="mailto:mubeen.63740@iqra.edu.pk">Email</a>
+        <span style="color: #8b949e;">| Karachi, Pakistan[cite: 4]</span>
+      </div>
+    </header>
 
-      /* Skills Box */
-      .skill-category {
-        margin-bottom: 1rem;
-      }
-      .skill-title {
-        font-weight: 600;
-        color: var(--heading);
-        margin-bottom: 0.4rem;
-        font-size: 0.95rem;
-      }
-
-      /* Education */
-      .edu-item {
-        display: flex;
-        justify-content: space-between;
-        margin-bottom: 0.8rem;
-      }
-      .edu-name {
-        color: var(--heading);
-        font-weight: 600;
-      }
-      .edu-date {
-        color: #8b949e;
-        font-size: 0.9rem;
-      }
-
-      /* Footer */
-      footer {
-        text-align: center;
-        margin-top: 4rem;
-        padding-top: 2rem;
-        border-top: 1px solid var(--border);
-        color: #8b949e;
-        font-size: 0.9rem;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <header>
-        <h1>Mubeen Ali</h1>
-        <div class="subtitle">DevOps, Cloud & Linux Enthusiast</div>
-        <p class="summary">
-          Computer Science student passionate about automation, Linux system
-          administration, and cloud technologies. Actively building CI/CD
-          pipelines, containerizing services, and scripting reliable
-          environments.
-        </p>
-        <div class="links">
-          <a href="https://github.com/Mubeenali-hub" target="_blank">GitHub</a>
-          <a href="https://linkedin.com/in/mubeen-ali-b202b426b" target="_blank"
-            >LinkedIn</a
-          >
-          <a href="mailto:mubeen.63740@iqra.edu.pk">Email</a>
-          <span style="color: #8b949e">| Karachi, Pakistan</span>
-        </div>
-      </header>
-
-      <!-- 1. Completed Projects -->
-      <section>
-        <h2>Completed Projects</h2>
-        <div class="grid" id="completed-grid">
-          <!-- smart-health-insurance-system -->
-          <div class="card">
-            <div>
-              <h3>smart-health-insurance-system</h3>
-              <p>
-                Full-stack insurance management system featuring role-based
-                access control (RBAC), automated fraud scoring, and real-time
-                claims tracking.
-              </p>
-              <div class="tags">
-                <span class="tag completed">Completed</span>
-                <span class="tag">Node.js</span>
-                <span class="tag">Express</span>
-                <span class="tag">LowDB</span>
-                <span class="tag">Full Stack</span>
-              </div>
-            </div>
-            <a
-              class="repo-link"
-              href="https://github.com/Mubeenali-hub/smart-health-insurance-system"
-              target="_blank"
-              >View Repository &rarr;</a
-            >
-          </div>
-
-          <!-- StudentGradeTracker -->
-          <div class="card">
-            <div>
-              <h3>StudentGradeTracker</h3>
-              <p>
-                Academic management application built in Java with role-based
-                features for teachers and students, including statistical
-                evaluations.
-              </p>
-              <div class="tags">
-                <span class="tag completed">Completed</span>
-                <span class="tag">Java</span>
-                <span class="tag">OOP</span>
-                <span class="tag">REST API</span>
-              </div>
-            </div>
-            <a
-              class="repo-link"
-              href="https://github.com/Mubeenali-hub/StudentGradeTracker"
-              target="_blank"
-              >View Repository &rarr;</a
-            >
-          </div>
-
-          <!-- AI-Health-Advisor-System -->
-          <div class="card">
-            <div>
-              <h3>AI-Health-Advisor-System</h3>
-              <p>
-                Rule-based system developed in C++ to process symptom logic and
-                deliver diagnostic recommendations.
-              </p>
-              <div class="tags">
-                <span class="tag completed">Completed</span>
-                <span class="tag">C++</span>
-                <span class="tag">Problem Solving</span>
-                <span class="tag">Logic</span>
-              </div>
-            </div>
-            <a
-              class="repo-link"
-              href="https://github.com/Mubeenali-hub/AI-Health-Advisor-System"
-              target="_blank"
-              >View Repository &rarr;</a
-            >
-          </div>
-        </div>
-      </section>
-
-      <!-- 2. In Progress Projects -->
-      <section id="in-progress-section">
-        <h2>In Progress</h2>
-        <div class="grid" id="in-progress-grid">
-          <!-- linux-server-automation -->
-          <div class="card" id="card-linux-server-automation">
-            <div>
-              <h3>linux-server-automation</h3>
-              <p>
-                Automated Linux server setup, system hardening, user management,
-                and security configuration scripts.
-              </p>
-              <div class="tags">
-                <span class="tag in-progress status-badge">In Progress</span>
-                <span class="tag">Shell</span>
-                <span class="tag">Linux</span>
-                <span class="tag">DevOps</span>
-              </div>
-            </div>
-            <div class="action-slot">
-              <a
-                class="repo-link"
-                href="https://github.com/Mubeenali-hub/linux-server-automation"
-                target="_blank"
-                >View Repository &rarr;</a
-              >
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- 3. Upcoming Projects -->
-      <section id="upcoming-section">
-        <h2>Upcoming Projects</h2>
-        <div class="grid" id="upcoming-grid">
-          <!-- Idea 1 -->
-          <div class="card" id="card-linux-log-parser">
-            <div>
-              <h3>Linux Log Parser & Security Alert Script</h3>
-              <p>
-                Automated log inspection tool analyzing authentication logs for
-                failed login patterns and suspicious IP addresses.
-              </p>
-              <div class="tags">
-                <span class="tag upcoming status-badge">Upcoming</span>
-                <span class="tag">Bash</span>
-                <span class="tag">Log Analysis</span>
-                <span class="tag">Security</span>
-              </div>
-            </div>
-            <div class="action-slot">
-              <span style="font-size: 0.85rem; color: #8b949e"
-                >Development Pipeline</span
-              >
-            </div>
-          </div>
-
-          <!-- Idea 2 -->
-          <div class="card" id="card-docker-container-lifecycle">
-            <div>
-              <h3>Docker Container Lifecycle & Cleanup Script</h3>
-              <p>
-                Automated maintenance tool to inspect container health, remove
-                dangling images, and optimize host disk utilization.
-              </p>
-              <div class="tags">
-                <span class="tag upcoming status-badge">Upcoming</span>
-                <span class="tag">Docker</span>
-                <span class="tag">Shell</span>
-                <span class="tag">Automation</span>
-              </div>
-            </div>
-            <div class="action-slot">
-              <span style="font-size: 0.85rem; color: #8b949e"
-                >Development Pipeline</span
-              >
-            </div>
-          </div>
-
-          <!-- CV Project 1 -->
-          <div class="card" id="card-dockerized-web-application">
-            <div>
-              <h3>Dockerized Web Application</h3>
-              <p>
-                Containerizing web application environments using Docker to
-                streamline multi-stage builds and isolated deployments.
-              </p>
-              <div class="tags">
-                <span class="tag upcoming status-badge">Upcoming</span>
-                <span class="tag">Docker</span>
-                <span class="tag">Containers</span>
-                <span class="tag">Cloud</span>
-              </div>
-            </div>
-            <div class="action-slot">
-              <span style="font-size: 0.85rem; color: #8b949e"
-                >Development Pipeline</span
-              >
-            </div>
-          </div>
-
-          <!-- CV Project 2 -->
-          <div class="card" id="card-cicd-pipeline-actions">
-            <div>
-              <h3>Automated CI/CD Pipeline</h3>
-              <p>
-                Building automated continuous integration and continuous
-                deployment pipelines using GitHub Actions to reduce manual
-                deployment effort.
-              </p>
-              <div class="tags">
-                <span class="tag upcoming status-badge">Upcoming</span>
-                <span class="tag">GitHub Actions</span>
-                <span class="tag">CI/CD</span>
-                <span class="tag">DevOps</span>
-              </div>
-            </div>
-            <div class="action-slot">
-              <span style="font-size: 0.85rem; color: #8b949e"
-                >Development Pipeline</span
-              >
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Technical Skills -->
-      <section>
-        <h2>Technical Arsenal</h2>
-        <div class="card" style="gap: 1rem">
-          <div class="skill-category">
-            <div class="skill-title">Operating Systems & Scripting</div>
+    <!-- 1. Completed Projects -->
+    <section>
+      <h2>Completed Projects</h2>
+      <div class="grid" id="completed-grid">
+        
+        <!-- smart-health-insurance-system -->
+        <div class="card" id="card-smart-health-insurance-system">
+          <div>
+            <h3>smart-health-insurance-system</h3>
+            <p>Full-stack insurance management system featuring role-based access control (RBAC), automated fraud scoring, and real-time claims tracking[cite: 1].</p>
             <div class="tags">
-              <span class="tag">Linux (Ubuntu, Fedora)</span>
-              <span class="tag">Bash Scripting</span>
-              <span class="tag">System Hardening</span>
+              <span class="tag completed status-badge">Completed</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Express</span>
+              <span class="tag">LowDB</span>
+              <span class="tag">Full Stack</span>
             </div>
           </div>
-
-          <div class="skill-category">
-            <div class="skill-title">DevOps, Cloud & Networking</div>
-            <div class="tags">
-              <span class="tag">Docker</span>
-              <span class="tag">CI/CD (GitHub Actions, Jenkins - Basic)</span>
-              <span class="tag">Git & GitHub</span>
-              <span class="tag">TCP/IP, DNS, HTTP/HTTPS</span>
-            </div>
+          <div class="action-slot">
+            <a class="repo-link" href="https://github.com/Mubeenali-hub/smart-health-insurance-system" target="_blank">View Repository &rarr;</a>
           </div>
+        </div>
 
-          <div class="skill-category">
-            <div class="skill-title">Programming & Development</div>
+        <!-- StudentGradeTracker -->
+        <div class="card" id="card-StudentGradeTracker">
+          <div>
+            <h3>StudentGradeTracker</h3>
+            <p>Academic management application built in Java with role-based features for teachers and students, including statistical evaluations[cite: 1].</p>
             <div class="tags">
-              <span class="tag">C / C++</span>
-              <span class="tag">JavaScript (Node.js)</span>
+              <span class="tag completed status-badge">Completed</span>
               <span class="tag">Java</span>
-              <span class="tag">HTML / CSS</span>
+              <span class="tag">OOP</span>
+              <span class="tag">REST API</span>
             </div>
+          </div>
+          <div class="action-slot">
+            <a class="repo-link" href="https://github.com/Mubeenali-hub/StudentGradeTracker" target="_blank">View Repository &rarr;</a>
           </div>
         </div>
-      </section>
 
-      <!-- Education -->
-      <section>
-        <h2>Education</h2>
-        <div class="card">
-          <div class="edu-item">
-            <div>
-              <div class="edu-name">BS Computer Science</div>
-              <div style="color: #8b949e">Iqra University, Karachi</div>
+        <!-- AI-Health-Advisor-System -->
+        <div class="card" id="card-AI-Health-Advisor-System">
+          <div>
+            <h3>AI-Health-Advisor-System</h3>
+            <p>Rule-based system developed in C++ to process symptom logic and deliver diagnostic recommendations[cite: 1].</p>
+            <div class="tags">
+              <span class="tag completed status-badge">Completed</span>
+              <span class="tag">C++</span>
+              <span class="tag">Problem Solving</span>
+              <span class="tag">Logic</span>
             </div>
-            <div class="edu-date">2023 &ndash; 2027</div>
           </div>
-          <div class="edu-item" style="margin-bottom: 0">
-            <div>
-              <div class="edu-name">Intermediate (Pre-Engineering)</div>
-              <div style="color: #8b949e">BISE Larkana</div>
-            </div>
-            <div class="edu-date">2018 &ndash; 2020</div>
+          <div class="action-slot">
+            <a class="repo-link" href="https://github.com/Mubeenali-hub/AI-Health-Advisor-System" target="_blank">View Repository &rarr;</a>
           </div>
         </div>
-      </section>
 
-      <footer>
-        <p>&copy; 2026 Mubeen Ali. Deployed with GitHub Pages.</p>
-      </footer>
-    </div>
+      </div>
+    </section>
 
-    <!-- Full Auto-Sync Lifecycle Engine -->
-    <script>
-      const user = 'Mubeenali-hub';
+    <!-- 2. In Progress Projects -->
+    <section id="in-progress-section">
+      <h2>In Progress</h2>
+      <div class="grid" id="in-progress-grid">
+        
+        <!-- linux-server-automation -->
+        <div class="card" id="card-linux-server-automation">
+          <div>
+            <h3>linux-server-automation</h3>
+            <p>Automated Linux server setup, system hardening, user management, and security configuration scripts[cite: 1].</p>
+            <div class="tags">
+              <span class="tag in-progress status-badge">In Progress</span>
+              <span class="tag">Shell</span>
+              <span class="tag">Linux</span>
+              <span class="tag">DevOps</span>
+            </div>
+          </div>
+          <div class="action-slot">
+            <a class="repo-link" href="https://github.com/Mubeenali-hub/linux-server-automation" target="_blank">View Repository &rarr;</a>
+          </div>
+        </div>
 
-      // Project card ID ke mutabiq repository mapping
-      const trackedProjects = [
-        { id: 'card-linux-server-automation', repo: 'linux-server-automation' },
-        { id: 'card-linux-log-parser', repo: 'linux-log-parser' },
-        {
-          id: 'card-docker-container-lifecycle',
-          repo: 'docker-container-lifecycle',
-        },
-        {
-          id: 'card-dockerized-web-application',
-          repo: 'dockerized-web-application',
-        },
-        { id: 'card-cicd-pipeline-actions', repo: 'cicd-pipeline-actions' },
-      ];
+      </div>
+    </section>
 
-      async function syncAllProjects() {
-        const completedGrid = document.getElementById('completed-grid');
-        const inProgressGrid = document.getElementById('in-progress-grid');
-        const inProgressSection = document.getElementById(
-          'in-progress-section'
-        );
-        const upcomingSection = document.getElementById('upcoming-section');
+    <!-- 3. Upcoming Projects -->
+    <section id="upcoming-section">
+      <h2>Upcoming Projects</h2>
+      <div class="grid" id="upcoming-grid">
 
-        for (const item of trackedProjects) {
-          const card = document.getElementById(item.id);
-          if (!card) continue;
+        <!-- Idea 1 -->
+        <div class="card" id="card-linux-log-parser">
+          <div>
+            <h3>Linux Log Parser & Security Alert Script</h3>
+            <p>Automated log inspection tool analyzing authentication logs for failed login patterns and suspicious IP addresses.</p>
+            <div class="tags">
+              <span class="tag upcoming status-badge">Upcoming</span>
+              <span class="tag">Bash</span>
+              <span class="tag">Log Analysis</span>
+              <span class="tag">Security</span>
+            </div>
+          </div>
+          <div class="action-slot">
+            <span style="font-size: 0.85rem; color: #8b949e;">Development Pipeline</span>
+          </div>
+        </div>
 
-          const badge = card.querySelector('.status-badge');
-          const actionSlot = card.querySelector('.action-slot');
+        <!-- Idea 2 -->
+        <div class="card" id="card-docker-container-lifecycle">
+          <div>
+            <h3>Docker Container Lifecycle & Cleanup Script</h3>
+            <p>Automated maintenance tool to inspect container health, remove dangling images, and optimize host disk utilization.</p>
+            <div class="tags">
+              <span class="tag upcoming status-badge">Upcoming</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Shell</span>
+              <span class="tag">Automation</span>
+            </div>
+          </div>
+          <div class="action-slot">
+            <span style="font-size: 0.85rem; color: #8b949e;">Development Pipeline</span>
+          </div>
+        </div>
 
-          try {
-            const res = await fetch(
-              `https://api.github.com/repos/${user}/${item.repo}`
-            );
-            if (res.ok) {
-              const data = await res.json();
-              const topics = data.topics || [];
+        <!-- CV Project 1 -->
+        <div class="card" id="card-dockerized-web-application">
+          <div>
+            <h3>Dockerized Web Application</h3>
+            <p>Containerizing web application environments using Docker to streamline multi-stage builds and isolated deployments[cite: 4].</p>
+            <div class="tags">
+              <span class="tag upcoming status-badge">Upcoming</span>
+              <span class="tag">Docker</span>
+              <span class="tag">Containers</span>
+              <span class="tag">Cloud</span>
+            </div>
+          </div>
+          <div class="action-slot">
+            <span style="font-size: 0.85rem; color: #8b949e;">Development Pipeline</span>
+          </div>
+        </div>
 
-              // Repo banne par repository ka live link set karein
-              actionSlot.innerHTML = `<a class="repo-link" href="${data.html_url}" target="_blank">View Repository &rarr;</a>`;
+        <!-- CV Project 2 -->
+        <div class="card" id="card-cicd-pipeline-actions">
+          <div>
+            <h3>CI/CD Pipeline (GitHub Actions)</h3>
+            <p>Building automated continuous integration and continuous deployment pipelines using GitHub Actions to reduce manual deployment effort[cite: 4].</p>
+            <div class="tags">
+              <span class="tag upcoming status-badge">Upcoming</span>
+              <span class="tag">GitHub Actions</span>
+              <span class="tag">CI/CD</span>
+              <span class="tag">DevOps</span>
+            </div>
+          </div>
+          <div class="action-slot">
+            <span style="font-size: 0.85rem; color: #8b949e;">Development Pipeline</span>
+          </div>
+        </div>
 
-              if (topics.includes('completed')) {
-                // 'completed' tag milte hi Completed Projects me bhej dein
+      </div>
+    </section>
+
+    <!-- Technical Skills -->
+    <section>
+      <h2>Technical Arsenal</h2>
+      <div class="card" style="gap: 1rem;">
+        <div class="skill-category">
+          <div class="skill-title">Operating Systems & Scripting</div>
+          <div class="tags">
+            <span class="tag">Linux (Ubuntu, Fedora)</span>
+            <span class="tag">Bash Scripting</span>
+            <span class="tag">System Hardening</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-title">DevOps, Cloud & Networking</div>
+          <div class="tags">
+            <span class="tag">Docker</span>
+            <span class="tag">CI/CD (GitHub Actions, Jenkins - Basic)</span>
+            <span class="tag">Git & GitHub</span>
+            <span class="tag">TCP/IP, DNS, HTTP/HTTPS</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-title">Programming & Development</div>
+          <div class="tags">
+            <span class="tag">C / C++</span>
+            <span class="tag">JavaScript (Node.js)</span>
+            <span class="tag">Java</span>
+            <span class="tag">HTML / CSS</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section>
+      <h2>Education</h2>
+      <div class="card">
+        <div class="edu-item">
+          <div>
+            <div class="edu-name">BS Computer Science</div>
+            <div style="color: #8b949e;">Iqra University, Karachi[cite: 4]</div>
+          </div>
+          <div class="edu-date">2023 &ndash; 2027</div>
+        </div>
+        <div class="edu-item" style="margin-bottom: 0;">
+          <div>
+            <div class="edu-name">Intermediate (Pre-Engineering)</div>
+            <div style="color: #8b949e;">BISE Larkana[cite: 4]</div>
+          </div>
+          <div class="edu-date">2018 &ndash; 2020[cite: 4]</div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 Mubeen Ali. Deployed with GitHub Pages.</p>
+    </footer>
+
+  </div>
+
+  <!-- Full Auto-Discovery & Auto-Sync Engine -->
+  <script>
+    const user = "Mubeenali-hub";
+    const ignoredRepos = ["portfolio", "mubeenali-hub"];
+
+    const upcomingMapping = {
+      "linux-log-parser": "card-linux-log-parser",
+      "docker-container-lifecycle": "card-docker-container-lifecycle",
+      "dockerized-web-application": "card-dockerized-web-application",
+      "cicd-pipeline-actions": "card-cicd-pipeline-actions"
+    };
+
+    async function syncAndDiscoverRepos() {
+      const completedGrid = document.getElementById('completed-grid');
+      const inProgressGrid = document.getElementById('in-progress-grid');
+      const inProgressSection = document.getElementById('in-progress-section');
+      const upcomingGrid = document.getElementById('upcoming-grid');
+      const upcomingSection = document.getElementById('upcoming-section');
+
+      try {
+        const res = await fetch(`https://api.github.com/users/${user}/repos?sort=updated&per_page=100`);
+        if (!res.ok) return;
+        const repos = await res.json();
+
+        repos.forEach(repo => {
+          const repoNameLower = repo.name.toLowerCase();
+          if (ignoredRepos.includes(repoNameLower)) return;
+
+          const isCompleted = (repo.topics && repo.topics.includes('completed'));
+          const existingCard = document.getElementById(`card-${repo.name}`) || 
+                               (upcomingMapping[repoNameLower] ? document.getElementById(upcomingMapping[repoNameLower]) : null);
+
+          if (existingCard) {
+            // Case 1: Pehle se maujood card ko update aur move karein
+            const badge = existingCard.querySelector('.status-badge');
+            const actionSlot = existingCard.querySelector('.action-slot');
+            if (actionSlot) {
+              actionSlot.innerHTML = `<a class="repo-link" href="${repo.html_url}" target="_blank">View Repository &rarr;</a>`;
+            }
+
+            if (isCompleted) {
+              if (badge) {
                 badge.textContent = 'Completed';
                 badge.className = 'tag completed status-badge';
-                completedGrid.appendChild(card);
-              } else {
-                // Repo exist karti hai toh In Progress me show karein
+              }
+              completedGrid.appendChild(existingCard);
+            } else {
+              if (badge) {
                 badge.textContent = 'In Progress';
                 badge.className = 'tag in-progress status-badge';
-                inProgressGrid.appendChild(card);
               }
+              inProgressGrid.appendChild(existingCard);
             }
-          } catch (e) {
-            // Repo create nahi hui toh card upcoming me hi rahega
+          } else {
+            // Case 2: Bilkul NAYA Project jo portfolio me pehle se likha hi nahi tha!
+            const newCard = document.createElement('div');
+            newCard.className = 'card';
+            newCard.id = `card-${repo.name}`;
+
+            const statusClass = isCompleted ? 'completed' : 'in-progress';
+            const statusText = isCompleted ? 'Completed' : 'In Progress';
+            const langTag = repo.language ? `<span class="tag">${repo.language}</span>` : '';
+            const desc = repo.description || 'DevOps and system administration repository.';
+
+            newCard.innerHTML = `
+              <div>
+                <h3>${repo.name}</h3>
+                <p>${desc}</p>
+                <div class="tags">
+                  <span class="tag ${statusClass} status-badge">${statusText}</span>
+                  ${langTag}
+                  <span class="tag">Auto-Synced</span>
+                </div>
+              </div>
+              <div class="action-slot">
+                <a class="repo-link" href="${repo.html_url}" target="_blank">View Repository &rarr;</a>
+              </div>
+            `;
+
+            if (isCompleted) {
+              completedGrid.appendChild(newCard);
+            } else {
+              inProgressGrid.appendChild(newCard);
+            }
           }
-        }
+        });
 
-        // Khali sections hide karna
-        if (inProgressGrid && inProgressGrid.children.length === 0) {
-          inProgressSection.style.display = 'none';
-        } else if (inProgressSection) {
-          inProgressSection.style.display = 'block';
-        }
-
-        const upcomingGrid = document.getElementById('upcoming-grid');
-        if (upcomingGrid && upcomingGrid.children.length === 0) {
-          upcomingSection.style.display = 'none';
-        }
+      } catch (err) {
+        console.error("Auto-sync error:", err);
       }
 
-      syncAllProjects();
-    </script>
-  </body>
+      // Check if sections are empty
+      if (inProgressGrid && inProgressGrid.children.length === 0) {
+        inProgressSection.style.display = 'none';
+      } else if (inProgressSection) {
+        inProgressSection.style.display = 'block';
+      }
+
+      if (upcomingGrid && upcomingGrid.children.length === 0) {
+        upcomingSection.style.display = 'none';
+      }
+    }
+
+    syncAndDiscoverRepos();
+  </script>
+</body>
 </html>
