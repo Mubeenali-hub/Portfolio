@@ -436,24 +436,34 @@
         console.error("Auto-sync error:", err);
       }
 
-      // Automatically Sort Grids: Level 1 (Basic) sabse pehle, Level 2 beech me, Level 3/4 aakhir me
-      sortGridByLevel(completedGrid);
-      sortGridByLevel(inProgressGrid);
-      sortGridByLevel(upcomingGrid);
+      // Har grid ko Level ke mutabiq strictly sort karne ka function
+      function sortGridStrictly(gridElement) {
+        if (!gridElement) return;
+        const cards = Array.from(gridElement.querySelectorAll('.card'));
+        cards.sort((a, b) => {
+          const levelA = parseInt(a.getAttribute('data-level') || '2', 10);
+          const levelB = parseInt(b.getAttribute('data-level') || '2', 10);
+          return levelA - levelB; // Level 1 pehle, Level 2 beech me, Level 3 aakhir me
+        });
+        cards.forEach(card => gridElement.appendChild(card));
+      }
+
+      // Automatically Sort Grids strictly
+      sortGridStrictly(completedGrid);
+      sortGridStrictly(inProgressGrid);
+      sortGridStrictly(upcomingGrid);
 
       // Empty sections management
-      if (inProgressGrid && inProgressGrid.children.length === 0) {
+      if (inProgressGrid && inProgressGrid.children.length === 0 && inProgressSection) {
         inProgressSection.style.display = 'none';
       } else if (inProgressSection) {
         inProgressSection.style.display = 'block';
       }
 
-      if (upcomingGrid && upcomingGrid.children.length === 0) {
+      if (upcomingGrid && upcomingGrid.children.length === 0 && upcomingSection) {
         upcomingSection.style.display = 'none';
       }
     }
 
     syncAndDiscoverRepos();
   </script>
-</body>
-</html>
